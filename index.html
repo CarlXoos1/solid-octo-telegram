@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Understanding the Self Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <section class="screen" id="screen-home" aria-labelledby="home-title">
+    <header class="hero">
+      <p class="eyebrow">Midterm Examination Review</p>
+      <h1 id="home-title">Understanding the Self</h1>
+      <p class="lede">Choose a topic. Each quiz lists <strong>15 questions</strong> from top to bottom. Answer them all, submit once, and then see your score and your mistakes.</p>
+    </header>
+    <div class="topics" id="topics" role="list"></div>
+    <p class="note">Your answers are checked only after you submit.</p>
+  </section>
+
+  <section class="screen" id="screen-quiz" hidden>
+    <div class="quiz-bar">
+      <div class="bar-row">
+        <button class="btn btn-small" id="btn-quit" type="button">← Topics</button>
+        <span class="bar-title" id="bar-title"></span>
+        <span class="bar-count" id="bar-count">0 / 15</span>
+      </div>
+      <div class="track" role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="track"><div class="fill" id="fill"></div></div>
+    </div>
+    <form class="questions" id="questions" novalidate></form>
+    <div class="submit-wrap">
+      <p class="submit-note" id="submit-note" role="status" aria-live="polite">Answer every question to submit.</p>
+      <button class="btn btn-primary btn-submit" id="btn-submit" type="button" aria-disabled="true">Submit Answers</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-result" hidden aria-labelledby="result-title">
+    <div class="result-card">
+      <p class="eyebrow" id="result-topic"></p>
+      <h2 id="result-title">Your Results</h2>
+      <div class="ring" id="ring"><div class="ring-inner"><span class="ring-num" id="ring-num">0%</span><span class="ring-sub" id="ring-sub">0 / 15</span></div></div>
+      <p class="rank" id="rank"></p>
+      <p class="rank-text" id="rank-text"></p>
+      <div class="stats">
+        <div class="stat s-good"><b id="st-right">0</b><span>Correct</span></div>
+        <div class="stat s-bad"><b id="st-wrong">0</b><span>Wrong</span></div>
+        <div class="stat s-best"><b id="st-best">0</b><span>Best</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="btn-retry" type="button">Try Again</button>
+        <button class="btn" id="btn-home" type="button">All Topics</button>
+      </div>
+    </div>
+    <div class="review-head">
+      <h3 id="review-title">Your Mistakes</h3>
+      <div class="seg" role="group" aria-label="Review filter">
+        <button type="button" id="seg-wrong" aria-pressed="true">Mistakes</button>
+        <button type="button" id="seg-all" aria-pressed="false">All Answers</button>
+      </div>
+    </div>
+    <div class="review" id="review"></div>
+  </section>
+</main>
+<div class="music" id="music" role="group" aria-label="Background music">
+  <button class="music-btn" id="music-btn" type="button" aria-pressed="false" aria-label="Play background music">
+    <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+    <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4.5" height="14" rx="1.2"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.2"/></svg>
+  </button>
+  <span class="music-label">Music<small id="music-state">Tap to play</small></span>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+  <input id="music-vol" type="range" min="0" max="100" value="30" aria-label="Music volume">
+</div>
+<audio id="bgm" src="background.mp3" loop preload="auto"></audio>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
